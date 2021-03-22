@@ -93,5 +93,6 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "https://wupiter-backend.azurewebsites.net/api"
+  "proxy": "https://wupiter-backend.azurewebsites.net/api",
+  "homepage":"."
 }
