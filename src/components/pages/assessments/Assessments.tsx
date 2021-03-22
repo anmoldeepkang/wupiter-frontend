@@ -3,7 +3,6 @@ import {FC} from "react";
 import {Table,ListGroup,Col,Container,Row} from "react-bootstrap";
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
-import {LoadingOverlay} from "../../ui";
 import {getAssessments,getAssessment,deleteAssessment,createAssessment,updateAssessment} from "../../../service"
 import AssessmentDetails from "../assessment-details/AssessmentDetails";
 import styled, {ThemeProvider} from "styled-components";
