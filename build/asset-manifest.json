@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/static/css/main.59ebe5f7.chunk.css",
+    "main.js": "/static/js/main.d0360fac.chunk.js",
+    "main.js.map": "/static/js/main.d0360fac.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.ba5e6729.js",
+    "runtime-main.js.map": "/static/js/runtime-main.ba5e6729.js.map",
+    "static/js/2.b179d1c1.chunk.js": "/static/js/2.b179d1c1.chunk.js",
+    "static/js/2.b179d1c1.chunk.js.map": "/static/js/2.b179d1c1.chunk.js.map",
+    "static/js/3.4b22bcfb.chunk.js": "/static/js/3.4b22bcfb.chunk.js",
+    "static/js/3.4b22bcfb.chunk.js.map": "/static/js/3.4b22bcfb.chunk.js.map",
+    "index.html": "/index.html",
+    "static/css/main.59ebe5f7.chunk.css.map": "/static/css/main.59ebe5f7.chunk.css.map",
+    "static/js/2.b179d1c1.chunk.js.LICENSE.txt": "/static/js/2.b179d1c1.chunk.js.LICENSE.txt",
+    "static/media/greenTick.92922b0f.png": "/static/media/greenTick.92922b0f.png",
+    "static/media/wrongCross.cf831d3a.png": "/static/media/wrongCross.cf831d3a.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.ba5e6729.js",
+    "static/js/2.b179d1c1.chunk.js",
+    "static/css/main.59ebe5f7.chunk.css",
+    "static/js/main.d0360fac.chunk.js"
+  ]
+}
