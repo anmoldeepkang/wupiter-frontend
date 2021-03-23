@@ -77,20 +77,21 @@ const App = () => {
 
             <Switch>
               <Route exact path="/">
-                <Home/>
+              {user ? <Redirect to="/assessments"/>:<Home/>}
               </Route>
-              <PrivateRoute exact path="/assessments">
-                <Assessments/>
-              </PrivateRoute>
-              <PrivateRoute exact path="/assessments/:id">
-                <AssessmentDetails/>
-              </PrivateRoute>
-              <PrivateRoute exact path="/assessments/:id/submissions">
-                <Submissions/>
-              </PrivateRoute>
-              <PrivateRoute exact path="/assessments/:id/submissions/:attemptId">
-                <SubmissionDetails/>
-              </PrivateRoute>
+              <Route exact path="/assessments">
+              {user ? <Assessments/>:<Redirect to="/"/>}
+
+              </Route>
+              <Route exact path="/assessments/:id">
+                {user ? <AssessmentDetails/>:<Redirect to="/"/>}
+              </Route>
+              <Route exact path="/assessments/:id/submissions">
+                  {user ? <Submissions/>:<Redirect to="/"/>}
+              </Route>
+              <Route exact path="/assessments/:id/submissions/:attemptId">
+                {user ?<SubmissionDetails/>:<Redirect to="/"/>}
+              </Route>
               <Route exact path="/assessments/:assessmentId/attempts/:attemptId/welcome" component={TestWelcome}>
               </Route>
               <Route exact path="/assessments/:assessmentId/attempts/:attemptId/started" component={TakeTest}>

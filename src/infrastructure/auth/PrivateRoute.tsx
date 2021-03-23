@@ -11,7 +11,7 @@ export const PrivateRoute: FC<RouteProps> = ({children, ...rest}) => {
 
   return (
     <Route {...rest}>
-      {localStorage.getItem("token") ? (
+      {user ? (
         <>{children}</>
       ) : (
         <Redirect to='/'/>
