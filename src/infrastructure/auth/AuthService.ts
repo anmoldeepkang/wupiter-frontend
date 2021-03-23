@@ -54,7 +54,8 @@ export class AuthService {
          return new Identity(response);
        } catch (error) {
          if (error instanceof InteractionRequiredAuthError) {
-           throw new InteractiveSignInRequired();
+           const identity=await signIn();
+           return identity;
          }
          throw error;
        }
