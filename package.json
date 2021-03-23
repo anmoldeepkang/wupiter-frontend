@@ -94,5 +94,5 @@
     ]
   },
   "proxy": "https://wupiter-backend.azurewebsites.net/api",
-  "homepage":"https://wupiter.azurewebsites.net/"
+  "homepage":"https://wupiter.azurewebsites.net"
 }

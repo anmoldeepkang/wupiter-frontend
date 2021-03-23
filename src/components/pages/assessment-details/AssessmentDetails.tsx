@@ -204,7 +204,7 @@ export default class AssessmentDetails extends React.Component<any, any>  {
   }
   sendInvite=async()=>{
     await sendInvitationForAssessment(this.state.candidateInvite);
-    this.setState({candidateInvite:{firstName:"",lastName:"",email:""},inviteCandidatesModal:false});
+    this.setState({candidateInvite:{firstName:"",lastName:"",email:"",assessmentId:this.state.assessmentId},inviteCandidatesModal:false});
   }
   render(){
     const data=this.state.questions;
