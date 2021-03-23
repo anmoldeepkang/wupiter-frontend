@@ -24,7 +24,7 @@ export class AuthService {
       auth: {
         clientId: '959fcaaa-6a51-4e66-a643-b962f2405067',
         authority: 'https://wupiter.b2clogin.com/wupiter.onmicrosoft.com/B2C_1_signupsignin1',
-        redirectUri: 'https://wupiter.azurewebsites.net/',
+        redirectUri: 'https://wupiter.azurewebsites.net/assessments/',
         postLogoutRedirectUri: 'https://wupiter.azurewebsites.net/',
         navigateToLoginRequestUrl: true,
         validateAuthority:false
@@ -54,7 +54,7 @@ export class AuthService {
          return new Identity(response);
        } catch (error) {
          if (error instanceof InteractionRequiredAuthError) {
-           const identity=await signIn();
+           const identity=await this.signIn();
            return identity;
          }
          throw error;
