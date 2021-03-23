@@ -1,13 +1,15 @@
 import React from "react";
 import {FC} from "react";
-import {Table,ListGroup,Col,Container,Row} from "react-bootstrap";
+import {Table,ListGroup,Col,Container,Row,Card} from "react-bootstrap";
 import Button from '@material-ui/core/Button';
 import { Link } from "react-router-dom";
 import {getAssessments,getAssessment,deleteAssessment,createAssessment,updateAssessment} from "../../../service"
 import AssessmentDetails from "../assessment-details/AssessmentDetails";
 import styled, {ThemeProvider} from "styled-components";
 import EditAssessment from "../../ui/EditAssessment/EditAssessment";
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 const PageContainer = styled.div`
   display: flex;
   margin:auto;
@@ -84,27 +86,33 @@ export default class Assessments extends React.Component<any, any>  {
   return (
     <>
     <PageContainer>
-      <h2>Assessments</h2>
-      <Button style={{display:'flex',width:'fit-content',marginBottom:'20px'}} color="primary" variant="contained" onClick={async ()=>{await this.openNewAssessment()}}>
-        New Assessment
-      </Button>
+    <Card>
+      <Card.Body>
+      <div style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:'20px'}}>
+
+        <Card.Title>Assessments</Card.Title>
+        <Button style={{display:'flex',width:'fit-content'}} color="primary" variant="contained" onClick={async ()=>{await this.openNewAssessment()}}>
+          New Assessment
+        </Button>
+      </div>
       <ListGroup>
 
               {this.state.assessments && this.state.assessments.map((item, index) => (
                 <ListGroup.Item key={index}>
                 <Container>
                 <Row>
-                    <Col xs={12} md={10} style={{display:'flex',alignItems:'center'}}>
+                    <Col xs={11} md={10} style={{display:'flex',alignItems:'center'}}>
                     <Link to={`/assessments/${item.id}`}>{item.title}</Link>
                     </Col>
-                    <Col style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                      <Button variant="contained" color="primary" onClick={async ()=>{await this.editAssessment(item.id)}}>
-                              Edit
-                      </Button>
+                    <Col style={{display:'flex',justifyContent:'flex-end'}}>
+                    <IconButton aria-label="delete" onClick={async ()=>{await this.editAssessment(item.id)}}>
+                             <EditIcon />
+                           </IconButton>
 
-                      <Button variant="contained" color="secondary" onClick={async()=>{await this.deleteAssessment(item.id)}}>
-                              Delete
-                      </Button>
+                           <IconButton aria-label="delete" onClick={async()=>{await this.deleteAssessment(item.id)}}>
+                                    <DeleteIcon />
+                                  </IconButton>
+
                       </Col>
                 </Row>
                 </Container>
@@ -112,6 +120,10 @@ export default class Assessments extends React.Component<any, any>  {
 
               ))}
               </ListGroup>
+      </Card.Body>
+    </Card>
+
+
               <EditAssessment
                 save={this.save}
                 close={this.closeEditAssessment}

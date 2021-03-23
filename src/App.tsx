@@ -71,13 +71,14 @@ const App = () => {
     <ThemeProvider theme={theme}>
 
         <Router history={browserHistory}>
+
         <PageContainer>
           <Header user={user} onLogin={handleLogin} onLogout={handleLogout} showBreakpoints={false}/>
           <RouteContainer>
 
             <Switch>
               <Route exact path="/">
-              {user ? <Redirect to="/assessments"/>:<Home/>}
+              {user ? <Redirect to="/assessments"/>:<Home onLogin={handleLogin}/>}
               </Route>
               <Route exact path="/assessments">
               {user ? <Assessments/>:<Redirect to="/"/>}
@@ -101,6 +102,7 @@ const App = () => {
             </Switch>
           </RouteContainer>
           </PageContainer>
+
         </Router>
 
     </ThemeProvider>

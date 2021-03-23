@@ -5,7 +5,7 @@ import {
   getSubmissions
 } from "../../../service";
 import styled, {ThemeProvider} from "styled-components";
-import {ListGroup} from 'react-bootstrap';
+import {ListGroup,Card} from 'react-bootstrap';
 
 import { Link } from "react-router-dom";
 const PageContainer = styled.div`
@@ -31,18 +31,23 @@ export default class Submissions extends React.Component<any,any> {
       return (
       <>
       <PageContainer>
-      <h2>Questions:</h2>
-      <ListGroup>
+      <Card>
+        <Card.Body>
+          <Card.Title>Submissions</Card.Title>
+          <ListGroup>
 
-        {this.state.submissions && this.state.submissions.map((item, index) => (
-          <ListGroup.Item key={item.id}>
-          <Link to={`/assessments/${item.assessmentId}/submissions/${item.id}`}>
-              {item.firstName} : {item.score}%
-          </Link>
-          </ListGroup.Item>
-        ))}
+            {this.state.submissions && this.state.submissions.map((item, index) => (
+              <ListGroup.Item key={item.id}>
+              <Link to={`/assessments/${item.assessmentId}/submissions/${item.id}`}>
+                  {item.firstName} : {item.score}%
+              </Link>
+              </ListGroup.Item>
+            ))}
 
-        </ListGroup>
+            </ListGroup>
+        </Card.Body>
+      </Card>
+
       </PageContainer>
       </>
     );

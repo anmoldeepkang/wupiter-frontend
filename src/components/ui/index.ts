@@ -4,3 +4,4 @@ export * from "./EditAssessment/EditAssessment";
 export * from "./Video/Video";
 export * from "./TestQuestion/TestQuestion";
 export * from "./Timer/Timer";
+export * from "./PageContainer/PageContainer";

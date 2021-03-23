@@ -39,7 +39,12 @@ export class AuthService {
   }
 
   async signIn() {
-    const response = await this.msalClient.loginPopup(this.signInOptions);
+    var response;
+    try {
+       response = await this.msalClient.loginPopup(this.signInOptions);
+    } catch(error) {
+      console.error(error);
+    }
     return new Identity(response);
   }
 

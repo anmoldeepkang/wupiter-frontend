@@ -17,9 +17,11 @@ import {getQuestions,
 import styled, {ThemeProvider} from "styled-components";
 import { makeStyles } from '@material-ui/core/styles';
 import Button from '@material-ui/core/Button';
-
+import IconButton from '@material-ui/core/IconButton';
+import DeleteIcon from '@material-ui/icons/Delete';
+import EditIcon from '@material-ui/icons/Edit';
 import EditQuestion from "../../ui/EditQuestion/EditQuestion";
-import {Form,ListGroup,Col,Modal,Button as Btn} from 'react-bootstrap';
+import {Form,ListGroup,Col,Modal,Button as Btn,Card} from 'react-bootstrap';
 import { v4 as uuidv4 } from 'uuid';
 
 const PageContainer = styled.div`
@@ -211,46 +213,69 @@ export default class AssessmentDetails extends React.Component<any, any>  {
   return (
     <>
       <PageContainer>
-      <h2>Questions:</h2>
-      <DropdownButton id="dropdown-basic-button" title="New Question" style={{marginBottom:'20px'}}>
-        <Dropdown.Item onClick={async()=>{await this.openNewQuestion('MCQ')}}>Non-video</Dropdown.Item>
-        <Dropdown.Item onClick={async()=>{await this.openNewQuestion('Video')}}>Video</Dropdown.Item>
-      </DropdownButton>
-      <Button style={{display:'flex',width:'fit-content',marginBottom:'20px'}} color="primary" variant="contained" onClick={async ()=>{this.editWelcomeVideo()}}>
-        Welcome Video
-      </Button>
-      <Button style={{display:'flex',width:'fit-content',marginBottom:'20px'}} color="primary" variant="contained">
-        <Link to={"/assessments/"+this.state.assessmentId+"/submissions"} style={{textDecoration:'none',color:'white'}}>Submissions</Link>
-      </Button>
-      <Button style={{display:'flex',width:'fit-content',marginBottom:'20px'}} color="primary" variant="contained" onClick={()=>{this.setState({inviteCandidatesModal:true})}}>
-        Invite Candidate
-      </Button>
-            <ListGroup>
 
-              {data && data.map((item, index) => (
-                <ListGroup.Item key={index}>
-                <Container>
-                <Row>
-                <Col xs={12} md={10} style={{display:'flex',alignItems:'center'}}>
-                    {item.title}
+        <Card style={{marginBottom:'20px'}}>
+          <Card.Body>
+            <Card.Title>Assessment: {this.state.assessment.title}</Card.Title>
+            <Card.Text>
+              {this.state.assessment.description}
+            </Card.Text>
+            <div style={{display:'flex'}}>
+            <Button style={{display:'flex',width:'fit-content',marginBottom:'20px',marginRight:'20px'}} color="primary" variant="contained" onClick={async ()=>{this.editWelcomeVideo()}}>
+              Welcome Video
+            </Button>
+            <Button style={{display:'flex',width:'fit-content',marginBottom:'20px',marginRight:'20px'}} color="primary" variant="contained">
+              <Link to={"/assessments/"+this.state.assessmentId+"/submissions"} style={{textDecoration:'none',color:'white'}}>Submissions</Link>
+            </Button>
+            <Button style={{display:'flex',width:'fit-content',marginBottom:'20px'}} color="primary" variant="contained" onClick={()=>{this.setState({inviteCandidatesModal:true})}}>
+              Invite Candidate
+            </Button>
+            </div>
+          </Card.Body>
+        </Card>
+        <Card>
+
+          <Card.Body>
+
+        <div style={{display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'space-between',marginBottom:'20px'}}>
+        <Card.Title style={{marginBottom:'0px'}}>Questions</Card.Title>
+
+          <DropdownButton id="dropdown-basic-button" title="New Question">
+            <Dropdown.Item onClick={async()=>{await this.openNewQuestion('MCQ')}}>Non-video</Dropdown.Item>
+            <Dropdown.Item onClick={async()=>{await this.openNewQuestion('Video')}}>Video</Dropdown.Item>
+          </DropdownButton>
+
+          </div>
+          <ListGroup>
+
+            {data && data.map((item, index) => (
+              <ListGroup.Item key={index}>
+              <Container>
+              <Row>
+              <Col xs={12} md={10} style={{display:'flex',alignItems:'center'}}>
+                  {item.title}
+              </Col>
+              <Col style={{display:'flex',justifyContent:'flex-end'}}>
+
+                <IconButton aria-label="delete" onClick={async ()=>{await this.editQuestion(item.id)}}>
+                         <EditIcon />
+                </IconButton>
+
+                <IconButton aria-label="delete" onClick={async()=>{await this.deleteQuestion(item.id)}}>
+                          <DeleteIcon />
+                </IconButton>
                 </Col>
-                <Col style={{display:'flex',alignItems:'center',justifyContent:'space-between'}}>
-                  <Button variant="contained" color="primary" onClick={async ()=>{await this.editQuestion(item.id)}}>
-                          Edit
-                  </Button>
-
-                  <Button variant="contained" color="secondary" onClick={async()=>{await this.deleteQuestion(item.id)}}>
-                          Delete
-                  </Button>
-                  </Col>
-                  </Row>
-                  </Container>
+                </Row>
+                </Container>
 
 
-                </ListGroup.Item>
-              ))}
+              </ListGroup.Item>
+            ))}
 
-              </ListGroup>
+            </ListGroup>
+          </Card.Body>
+          </Card>
+
               <EditQuestion questionId={this.state.modalQuestion.id}
                 isOpen={this.state.editQuestion}
                 close={this.closeEditQuestion}

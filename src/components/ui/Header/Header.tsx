@@ -2,7 +2,7 @@ import React, {FC} from 'react';
 import {Button, Nav, Navbar} from "react-bootstrap";
 import {LinkContainer} from "react-router-bootstrap";
 import {UserModel} from "infrastructure/context";
-
+import avantiLogo from "../../../assets/avanti-logo.svg";
 export type HeaderProps = {
   user?: UserModel;
   showBreakpoints: boolean;
@@ -12,8 +12,19 @@ export type HeaderProps = {
 
 export const Header: FC<HeaderProps> = ({user, showBreakpoints, onLogin, onLogout}) => {
   return (
-    <Navbar bg="light">
-      <Navbar.Brand>Avanti Candidate Screening</Navbar.Brand>
+    <Navbar bg="dark" variant="dark">
+      <Navbar.Brand href="/">
+      <div style={{display:'flex',alignItems:'baseline'}}>
+      <img
+       src={avantiLogo}
+       width="150"
+       height="27"
+       className="d-inline-block align-top"
+       alt="React Bootstrap logo"
+     />
+      <span>Avanti Candidate Screening</span>
+      </div>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav"/>
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="mr-auto" activeKey={window.location.pathname}>
@@ -31,7 +42,7 @@ export const Header: FC<HeaderProps> = ({user, showBreakpoints, onLogin, onLogou
         {user ? (
           <>
             <Nav className={"mx-2"}><LinkContainer
-              to={`/profile`}><Nav.Link>{user.name}</Nav.Link></LinkContainer></Nav>
+              to={`/`}><Nav.Link>{user.name}</Nav.Link></LinkContainer></Nav>
             <Button size="sm" onClick={onLogout}>Log Out</Button>
           </>
         ) : (
